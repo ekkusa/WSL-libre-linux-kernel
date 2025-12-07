@@ -700,7 +700,9 @@ clean_mk CONFIG_X86_LOCAL_APIC arch/x86/kernel/apic/Makefile
 # Do no recommend non-Free microcode update.
 announce CPU_SUP_INTEL - "Support Intel processors"
 clean_blob arch/x86/events/intel/core.c
-clean_blob Documentation/admin-guide/hw-vuln/indirect-target-selection.rst
+if test -f Documentation/admin-guide/hw-vuln/indirect-target-selection.rst; then
+  clean_blob Documentation/admin-guide/hw-vuln/indirect-target-selection.rst
+fi
 clean_kconfig arch/x86/Kconfig.cpu CPU_SUP_INTEL
 clean_mk CONFIG_CPU_SUP_INTEL arch/x86/events/intel/Makefile
 
@@ -2675,11 +2677,13 @@ clean_blob drivers/net/wireless/realtek/rtlwifi/rtl8192ee/sw.c
 clean_kconfig drivers/net/wireless/realtek/rtlwifi/Kconfig RTL8192EE
 clean_mk CONFIG_RTL8192EE drivers/net/wireless/realtek/rtlwifi/Makefile
 
-announce R8712U - "RealTek RTL8712U (RTL8192SU) Wireless LAN NIC driver"
-reject_firmware drivers/staging/rtl8712/hal_init.c
-clean_blob drivers/staging/rtl8712/hal_init.c
-clean_kconfig drivers/staging/rtl8712/Kconfig R8712U
-clean_mk CONFIG_R8712U drivers/staging/rtl8712/Makefile
+if test -d drivers/staging/rtl8712; then
+  announce R8712U - "RealTek RTL8712U (RTL8192SU) Wireless LAN NIC driver"
+  reject_firmware drivers/staging/rtl8712/hal_init.c
+  clean_blob drivers/staging/rtl8712/hal_init.c
+  clean_kconfig drivers/staging/rtl8712/Kconfig R8712U
+  clean_mk CONFIG_R8712U drivers/staging/rtl8712/Makefile
+fi
 
 announce RTL8723AE - "Realtek RTL8723AE PCIe Wireless Network Adapter"
 reject_firmware drivers/net/wireless/realtek/rtlwifi/rtl8723ae/sw.c
