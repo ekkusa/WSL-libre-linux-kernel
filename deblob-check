@@ -26,13 +26,14 @@
 #        modified with 2024-10-18 r19651
 #        modified with 2025-04-25 r19761
 #        modified with 2025-05-18 r19784
+#        modified with 2026-01-19 r19902
 # Inspired in gNewSense's find-firmware script.
 # Written by Alexandre Oliva <lxoliva@fsfla.org>
 
 # Check http://www.fsfla.org/svn/fsfla/software/linux-libre for newer
 # versions.
 
-# Copyright 2008-2025 Alexandre Oliva <lxoliva@fsfla.org>
+# Copyright 2008-2026 Alexandre Oliva <lxoliva@fsfla.org>
 #
 # This program is part of GNU Linux-libre, a GNU project that
 # publishes scripts to clean up Linux so as to make it suitable for
@@ -6410,6 +6411,9 @@ set_except () {
     # New in 6.14.7, 6.12.29, 6.6.91, 6.1.139.
     blobna 'This[ ]is[^\n]*IPU[ ]2025\.1[ ]microcode[,][ ]which[\n][^\n]*Alternatively[ ]microcode[ ]can[ ]be[\n][^\n]*repository[ ]\[[#]f1\]_\.'  Documentation/admin-guide/hw-vuln/indirect-target-selection.rst
     blobna 'Microcode[ ]repository[ ]-[ ]http[^\n]*[/]Intel-Linux-Processor-Microcode-[^\n/ ]*-Files' Documentation/admin-guide/hw-vuln/indirect-target-selection.rst
+
+    # New in 6.18.6, 6.12.66, 6.6.121, 6.1.161, 5.15.198, 5.10.248.
+    defsnc 'static[ ]volatile[ ]const[ ]u8[ ]____cacheline_aligned[ ]aes_\(inv_\)\?sbox\[\][ ]=' lib/crypto/aes.c
 
     # Add new patterns above.
     ;;
