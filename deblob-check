@@ -37,13 +37,14 @@
 #        modified with 2025-04-25 r19761
 #        modified with 2025-05-18 r19784
 #        modified with 2025-05-19 r10793 (partial)
+#        modified with 2026-01-19 r19902
 # Inspired in gNewSense's find-firmware script.
 # Written by Alexandre Oliva <lxoliva@fsfla.org>
 
 # Check http://www.fsfla.org/svn/fsfla/software/linux-libre for newer
 # versions.
 
-# Copyright 2008-2025 Alexandre Oliva <lxoliva@fsfla.org>
+# Copyright 2008-2026 Alexandre Oliva <lxoliva@fsfla.org>
 #
 # This program is part of GNU Linux-libre, a GNU project that
 # publishes scripts to clean up Linux so as to make it suitable for
@@ -6485,6 +6486,9 @@ set_except () {
     # The variable name is very suspicious, but the short sequence of
     # nearly-sorted small numbers doesn't seem to be executable code.
     defsnc '[\t]unsigned[ ]char[ ]modified_fix_code\[\][ ]=' arch/arm/mach-at91/pm.c
+
+    # New in 6.18.6, 6.12.66, 6.6.121, 6.1.161, 5.15.198, 5.10.248.
+    defsnc 'static[ ]volatile[ ]const[ ]u8[ ]____cacheline_aligned[ ]aes_\(inv_\)\?sbox\[\][ ]=' lib/crypto/aes.c
 
     # Add new patterns above.
     ;;
