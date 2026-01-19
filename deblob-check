@@ -33,13 +33,14 @@
 #        modified with 2025-05-18 r19784
 #        modified with 2025-05-19 r10793 (partial)
 #        modified with 2025-07-21 r19854 (partial)
+#        modified with 2026-01-19 r19902
 # Inspired in gNewSense's find-firmware script.
 # Written by Alexandre Oliva <lxoliva@fsfla.org>
 
 # Check http://www.fsfla.org/svn/fsfla/software/linux-libre for newer
 # versions.
 
-# Copyright 2008-2025 Alexandre Oliva <lxoliva@fsfla.org>
+# Copyright 2008-2026 Alexandre Oliva <lxoliva@fsfla.org>
 #
 # This program is part of GNU Linux-libre, a GNU project that
 # publishes scripts to clean up Linux so as to make it suitable for
@@ -6841,6 +6842,9 @@ set_except () {
     # New in 6.16-rc, 6.1.147.
     blobname 'qca[/]nvm_usb_%08x' drivers/bluetooth/btusb.c
     blobna 'if[ ][(]variant[)][ \n\t]*len[ ][+]=[ ]snprintf[(][^;]*[)][;][ \n\t]*if[ ][(]board_id[)]\([ \t\n]*len[ ][+]=[ ]snprintf[(][^);]*[)][;]\)*' drivers/bluetooth/btusb.c
+
+    # New in 6.18.6, 6.12.66, 6.6.121, 6.1.161, 5.15.198, 5.10.248.
+    defsnc 'static[ ]volatile[ ]const[ ]u8[ ]____cacheline_aligned[ ]aes_\(inv_\)\?sbox\[\][ ]=' lib/crypto/aes.c
 
     # Add new patterns above.
     ;;
